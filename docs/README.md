@@ -1,6 +1,6 @@
 # Simulador Envío de Emails
 
-[Simulador Envío de Emails](https://adolfodelarosades.github.io/JS-Proyecto-03-SimuladorEnvioEmails/.)
+[Simulador](https://adolfodelarosades.github.io/JS-Proyecto-03-SimuladorEnvioEmails/)
 
 Las características del proyecto son:
 
