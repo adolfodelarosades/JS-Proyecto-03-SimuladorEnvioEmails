@@ -3,6 +3,8 @@ const email = document.getElementById('email');
 const asunto = document.getElementById('asunto');
 const mensaje = document.getElementById('mensaje');
 const btnEnviar = document.getElementById('enviar');
+const btnReset = document.getElementById('resetBtn');
+const formularioEnviar = document.getElementById('enviar-mail');
 
 eventListeners();
 
@@ -15,6 +17,13 @@ function eventListeners(){
     email.addEventListener('blur', validarCampo);
     asunto.addEventListener('blur', validarCampo);
     mensaje.addEventListener('blur', validarCampo);
+
+    //Botón de enviar o Submit del formulario (Los dos hacen lo mismo)
+    //btnEnviar.addEventListener('click', enviarEmail);
+    formularioEnviar.addEventListener('submit', enviarEmail);
+
+    //Botón de reset
+    btnReset.addEventListener('click', resetFormulario);
 }
 
 //FUNCIONES
@@ -65,4 +74,37 @@ function validarEmail(campo){
         campo.classList.add('error');
     }
 
+}
+
+//Enviar email
+function enviarEmail(e){
+    //console.log('Mail Enviado');
+    const spinnerGif = document.querySelector('#spinner');
+    spinnerGif.style.display = 'block';
+
+    //Gif que envia email
+    const enviado = document.createElement('img');
+    enviado.src = 'img/mail.gif';
+    enviado.style.display= 'block';
+
+    //Ocultar Spinner y mostrar git de enviado
+    setTimeout( function() {
+        spinnerGif.style.display = 'none';
+        document.querySelector('#loaders').appendChild( enviado );
+
+        //Después de 5 seg. quita gif de enviado y limpia el formulario
+        setTimeout( function() {
+            enviado.remove();
+            formularioEnviar.reset();
+        }, 5000);
+
+    }, 3000);
+
+    e.preventDefault();
+}
+
+//Limpiar el formulario (Reset)
+function resetFormulario(e){
+    formularioEnviar.reset();
+    e.preventDefault();
 }
